@@ -15,7 +15,7 @@ jobs:
         with:
           github-token: ${{ secrets.PROSOPONATOR_PAT }}
           script: |
-            const response = await github.repos.createDispatchEvent({
+            const response = await github.rest.repos.createDispatchEvent({
               owner: 'goastler',
               repo: 'gha_b',
               event_type: 'captcha_updated'
