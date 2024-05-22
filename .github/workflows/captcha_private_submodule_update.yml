@@ -1,0 +1,23 @@
+name: captcha_private_submodule_update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger workflow in another repository
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.PROSOPONATOR_PAT }}
+          script: |
+            const response = await github.repos.createDispatchEvent({
+              owner: 'goastler',
+              repo: 'gha-b',
+              event_type: 'captcha_private_submodule_update'
+            });
+            console.log(response);
